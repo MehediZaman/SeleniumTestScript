@@ -1,5 +1,7 @@
 package SignIn;
 
+import java.util.concurrent.TimeUnit;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -14,11 +16,11 @@ public class FarmilioSignIn {
 		// objects and variables instantiation
 	    WebDriver driver = new FirefoxDriver();
 	//    String appUrl = "http://staging.farmilio.net/users/sign_in";
-	    String appUrl = "http://staging.farmilio.net/users/sign_up";
+	      String appUrl = "http://staging.farmilio.net/";
 	    
 	 // Clear cache and cookies    
 	    //driver.manage().deleteAllCookies(); //delete all cookies
-	    
+	  
 	// launch the firefox browser and open the application url
 	    driver.get(appUrl);
 	    
@@ -39,7 +41,7 @@ public class FarmilioSignIn {
 	    WebElement createAccount = driver.findElement(By.partialLinkText("Konto"));
 	    createAccount.click();    
 	   
-	   // driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+	  driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 	    
 	// enter a valid username in the email textbox
 	      WebElement usernamereg = driver.findElement(By.name("user[email]"));
@@ -60,19 +62,14 @@ public class FarmilioSignIn {
 	         driver.findElement(By.id("user_terms_and_conditions")).click();
 	    }
 	    
-	     
-	    //user_terms_and_conditions
-	 	//user[terms_and_conditions]
 	 	
 	   WebElement kontoAnlegenButton = (new WebDriverWait(driver, 15))
-	    		  .until(ExpectedConditions.presenceOfElementLocated(By.xpath("(//button[@type='submit'])[2]")));
-	 //click on the Konto anlegen (create account) button
-	   			  kontoAnlegenButton = driver.findElement(By.xpath("(//button[@type='submit'])[2]"));
-	//WebElement kontoAnlegenButton = driver.findElement(By.partialLinkText("Konto"));
-	    //(By.xpath("//button[@type='submit']"))
+	   .until(ExpectedConditions.presenceOfElementLocated(By.xpath("(//button[@type='submit'])[2]")));
+	 
+	   //click on the Konto anlegen (create account) button
+	   	kontoAnlegenButton = driver.findElement(By.xpath("(//button[@type='submit'])[2]"));
 	    kontoAnlegenButton.click();
-	     
-	    
+	     	    
 	    /*
 	// declare and initialize the variable to store the expected title of the webpage.
 	    String expectedTitle = " Farmilio ";
@@ -91,7 +88,7 @@ public class FarmilioSignIn {
 	    {
 	           System.out.println("Verification Failed - An incorrect title is displayed on the web page.");
 	    }*/
-	  
+
 	  //click on the Login button
 	    WebElement logInInitial = driver.findElement(By.partialLinkText("Log"));
 	    logInInitial.click();
@@ -121,24 +118,25 @@ public class FarmilioSignIn {
 	 // driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 	 
 	    // launch the home url of the application
-	    String homeUrl = "http://staging.farmilio.net";
+	    
+	    String homeUrl = "http://staging.farmilio.net/";
 	    driver.get(homeUrl); 
 	       
 	  //click on the Start Farmilio link
-	    WebElement startFarmilio = driver.findElement(By.partialLinkText("Direkt"));
-	    startFarmilio.click();   
+	  //  WebElement startFarmilio = driver.findElement(By.partialLinkText("Direkt"));
+	  //  startFarmilio.click();   
 	    
-	    
+
 	 //Enter offer name/s in the Searchbox
-	    WebElement searchOffer = driver.findElement(By.xpath("//input[@type='text']"));
-	    searchOffer.clear();
-	    searchOffer.sendKeys("fruits");
+	    WebElement searchBox = driver.findElement(By.xpath("//input[@type='text']"));
+	    searchBox.clear();
+	    searchBox.sendKeys("fruits");
 	    
-	    /*
+	 
 	  //click on the Search button
 	    WebElement searchButton = driver.findElement(By.xpath("//button[@type='submit']"));
 	    searchButton.click();
-	    */
+	
 	    
 	// close the web browser
 	    driver.close();
