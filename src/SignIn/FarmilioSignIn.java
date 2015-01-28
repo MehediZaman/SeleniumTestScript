@@ -2,6 +2,7 @@ package SignIn;
 
 import java.util.concurrent.TimeUnit;
 
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -23,13 +24,7 @@ public class FarmilioSignIn {
 	  
 	// launch the firefox browser and open the application url
 	    driver.get(appUrl);
-	    
-	 // launch the firefox browser in a new tab and open the application url    
-     // driver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL +"t");
-	//  ArrayList<String> tabs = new ArrayList<String> (driver.getWindowHandles());
-	//  driver.switchTo().window(tabs.get(0));
-	//    driver.get(appUrl);
-	    
+	    	    
 	// maximize the browser window
 	    driver.manage().window().maximize();
 
@@ -107,39 +102,47 @@ public class FarmilioSignIn {
 	    WebElement logInButton = driver.findElement(By.xpath("//button[@type='submit']"));
 	    logInButton.click();
 	    
-	  //click on the Brand Logo
-	  //  driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-	  //  WebElement brandLogo = driver.findElement(By.xpath("//img[@ src='/assets/farmilio_logo_onlyname_positive_rgb_560-292227365d3dc358bf99a62d04231c7f.png']"));
-	 //   brandLogo.click();
-	   
-	    
-	 // launch the firefox browser and open the application url
-	 //	driver.get(appUrl);
-	 // driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-	 
-	    // launch the home url of the application
-	    
 	    String homeUrl = "http://staging.farmilio.net/";
 	    driver.get(homeUrl); 
-	       
-	  //click on the Start Farmilio link
-	  //  WebElement startFarmilio = driver.findElement(By.partialLinkText("Direkt"));
-	  //  startFarmilio.click();   
-	    
-
+	      	    
 	 //Enter offer name/s in the Searchbox
 	    WebElement searchBox = driver.findElement(By.xpath("//input[@type='text']"));
 	    searchBox.clear();
 	    searchBox.sendKeys("fruits");
 	    
-	 
-	  //click on the Search button
+	    
+	 //click on the Search button
 	    WebElement searchButton = driver.findElement(By.xpath("//button[@type='submit']"));
 	    searchButton.click();
 	
 	    
+	 //click on the Benutzer Details (User details) button
+		    WebElement myAccountButton = driver.findElement(By.partialLinkText("Benutzer"));
+		    myAccountButton.click();    
+	    
+	//click on the Benutzer (User) button
+		    WebElement myAccountDetailsButton = driver.findElement(By.partialLinkText("Details"));
+		    myAccountDetailsButton.click();  
+		   
+		     
+    //Select a lookup data from Gender DropDown	    
+		    WebElement dropDown = driver.findElement(By.name("publicprofile[gender]"));
+		    Select clickDropDown = new Select(dropDown); 
+		    clickDropDown.selectByValue("2");
+	
+    //click on the Speichern / Submit button in the Benutzer Details (Edit User details) page
+		    WebElement editUserButton = driver.findElement(By.cssSelector("button.btn.btn-default"));
+		    editUserButton.click();       
+	    
+	//click on the Eigene Angebote (My Offers) button
+		      WebElement myOfferButton = driver.findElement(By.partialLinkText("Eigene"));
+		      myOfferButton.click();  	    	   
+		      
+	//click on the Eigene Angebote (My Offers) button
+		      WebElement offerDetailsLink = driver.findElement(By.cssSelector("a[href*='Himbeerkonfitüre']"));
+		      offerDetailsLink.click();
 	// close the web browser
-	    driver.close();
+	    //driver.close();
 	    System.out.println("Test script executed successfully.");
 	    
 	// terminate the program
